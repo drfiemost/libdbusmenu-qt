@@ -1,5 +1,10 @@
 project(dbusmenu-qt)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
+
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules")
 
 # Build options
@@ -76,8 +81,7 @@ endif (__DBUSMENU_HAVE_CXX11)
 
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
-set(LIB_DESTINATION "${CMAKE_INSTALL_LIBDIR}")
-set(CMAKECONFIG_INSTALL_DIR "${LIB_DESTINATION}/cmake/dbusmenu-${QT_SUFFIX}")
+set(CMAKECONFIG_INSTALL_DIR "${LIB_INSTALL_DIR}/cmake/dbusmenu-${QT_SUFFIX}")
 set(INCLUDE_INSTALL_DIR "include/dbusmenu-${QT_SUFFIX}")
 
 # dist targets
@@ -103,7 +107,7 @@ add_dependencies(distcheck dist)
 configure_file(dbusmenu-qt.pc.in ${CMAKE_BINARY_DIR}/dbusmenu-${QT_SUFFIX}.pc @ONLY)
 
 install(FILES ${CMAKE_BINARY_DIR}/dbusmenu-${QT_SUFFIX}.pc
-        DESTINATION ${LIB_DESTINATION}/pkgconfig
+        DESTINATION ${LIB_INSTALL_DIR}/pkgconfig
     )
 
 add_subdirectory(src)
