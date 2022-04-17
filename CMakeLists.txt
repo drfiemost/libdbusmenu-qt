@@ -29,38 +29,16 @@ set(dbusmenu_qt_lib_PATCH_VERSION 0)
 
 set(dbusmenu_qt_lib_VERSION ${dbusmenu_qt_lib_SOVERSION}.${dbusmenu_qt_lib_API_VERSION}.${dbusmenu_qt_lib_PATCH_VERSION})
 
-# Check if we want to explicitly select the Qt version to be used or autodetect
-if (NOT USE_QT4 AND NOT USE_QT5)
-    # Autodetect, prefering Qt5
-    message(STATUS "Autodetecting Qt version to use")
-    find_package(Qt5Widgets QUIET)
-    if (Qt5Widgets_FOUND)
-        set(USE_QT5 TRUE)
-    endif()
-endif()
-
 # Detect for which Qt version we're building
-if (USE_QT5)
-    find_package(Qt5Widgets REQUIRED)
-    find_package(Qt5DBus REQUIRED)
-    include_directories(${Qt5Widgets_INCLUDE_DIRS} ${Qt5DBus_INCLUDE_DIRS})
-    find_package(Qt5Core REQUIRED)
-    set(CMAKE_AUTOMOC ON)
-    set(CMAKE_AUTOMOC_RELAXED_MODE ON)
-    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+find_package(Qt4 REQUIRED)
+include_directories(
+    ${QT_INCLUDE_DIR}
+    ${QT_QTCORE_INCLUDE_DIR}
+    ${QT_QTDBUS_INCLUDE_DIR}
+    ${QT_QTGUI_INCLUDE_DIR}
+    )
 
-    set(QT_SUFFIX "qt5")
-else()
-    find_package(Qt4 REQUIRED)
-    include_directories(
-      ${QT_INCLUDE_DIR}
-      ${QT_QTCORE_INCLUDE_DIR}
-      ${QT_QTDBUS_INCLUDE_DIR}
-      ${QT_QTGUI_INCLUDE_DIR}
-      )
-
-    set(QT_SUFFIX "qt")
-endif()
+set(QT_SUFFIX "qt")
 
 include (CheckCXXCompilerFlag)
 # Check some compiler flags
@@ -73,11 +51,6 @@ check_cxx_compiler_flag(-Woverloaded-virtual __DBUSMENU_HAVE_W_OVERLOADED_VIRTUA
 if (__DBUSMENU_HAVE_W_OVERLOADED_VIRTUAL)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Woverloaded-virtual")
 endif (__DBUSMENU_HAVE_W_OVERLOADED_VIRTUAL)
-
-check_cxx_compiler_flag(-std=c++11 __DBUSMENU_HAVE_CXX11)
-if (__DBUSMENU_HAVE_CXX11)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-endif (__DBUSMENU_HAVE_CXX11)
 
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
