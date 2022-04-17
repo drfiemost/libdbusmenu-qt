@@ -59,6 +59,7 @@ void DBusMenuImporterTest::testStandardItem()
 {
     QMenu inputMenu;
     QAction *action = inputMenu.addAction("Test");
+    Q_UNUSED(action);
     DBusMenuExporter exporter(TEST_OBJECT_PATH, &inputMenu);
 
     DBusMenuImporter importer(TEST_SERVICE, TEST_OBJECT_PATH);
@@ -74,6 +75,7 @@ void DBusMenuImporterTest::testAddingNewItem()
 {
     QMenu inputMenu;
     QAction *action = inputMenu.addAction("Test");
+    Q_UNUSED(action);
     DBusMenuExporter exporter(TEST_OBJECT_PATH, &inputMenu);
 
     DBusMenuImporter importer(TEST_SERVICE, TEST_OBJECT_PATH);

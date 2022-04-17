@@ -390,9 +390,11 @@ void DBusMenuExporterTest::testNonExclusiveActionGroup()
     item = list.takeFirst();
     QCOMPARE(item.properties.value("toggle-type").toString(), QString("checkmark"));
     int a1Id = item.id;
+    Q_UNUSED(a1Id);
     item = list.takeFirst();
     QCOMPARE(item.properties.value("toggle-type").toString(), QString("checkmark"));
     int a2Id = item.id;
+    Q_UNUSED(a2Id);
 }
 
 void DBusMenuExporterTest::testClickDeletedAction()
@@ -457,6 +459,7 @@ void DBusMenuExporterTest::testMenuShortcut()
     QMenu inputMenu;
     QVERIFY(QDBusConnection::sessionBus().registerService(TEST_SERVICE));
     DBusMenuExporter *exporter = new DBusMenuExporter(TEST_OBJECT_PATH, &inputMenu);
+    Q_UNUSED(exporter);
 
     QAction *a1 = inputMenu.addAction("a1");
     a1->setShortcut(Qt::CTRL | Qt::Key_A);
@@ -499,9 +502,12 @@ void DBusMenuExporterTest::testGetGroupProperties()
     QMenu inputMenu;
     QVERIFY(QDBusConnection::sessionBus().registerService(TEST_SERVICE));
     DBusMenuExporter *exporter = new DBusMenuExporter(TEST_OBJECT_PATH, &inputMenu);
+    Q_UNUSED(exporter);
 
     QAction *a1 = inputMenu.addAction("a1");
+    Q_UNUSED(a1);
     QAction *a2 = inputMenu.addAction("a2");
+    Q_UNUSED(a2);
 
     // Check exporter is on DBus
     QDBusInterface iface(TEST_SERVICE, TEST_OBJECT_PATH);
@@ -585,6 +591,7 @@ void DBusMenuExporterTest::testTrackActionsOnlyOnce()
     QMenu mainMenu;
     QVERIFY(QDBusConnection::sessionBus().registerService(TEST_SERVICE));
     DBusMenuExporter *exporter = new DBusMenuExporter(TEST_OBJECT_PATH, &mainMenu);
+    Q_UNUSED(exporter);
 
     QMenu* subMenu = new QMenu("File");
     subMenu->addAction("a1");
@@ -645,6 +652,7 @@ void DBusMenuExporterTest::testDBusMenuObjectIsDeletedWhenExporterIsDeleted()
     DBusMenuExporter *exporter = new DBusMenuExporter(TEST_OBJECT_PATH, &inputMenu);
 
     QAction *a1 = inputMenu.addAction("a1");
+    Q_UNUSED(a1);
     QVERIFY2(hasInternalDBusMenuObject(&inputMenu), "Test setup failed");
     delete exporter;
     QVERIFY(!hasInternalDBusMenuObject(&inputMenu));
@@ -675,6 +683,7 @@ void DBusMenuExporterTest::testSeparatorCollapsing()
 
     QVERIFY(QDBusConnection::sessionBus().registerService(TEST_SERVICE));
     DBusMenuExporter *exporter = new DBusMenuExporter(TEST_OBJECT_PATH, &inputMenu);
+    Q_UNUSED(exporter);
 
     if (input.isEmpty()) {
         // Pretend there was an action so that doEmitLayoutUpdated() is called

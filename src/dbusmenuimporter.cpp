@@ -367,6 +367,7 @@ DBusMenuImporter::~DBusMenuImporter()
 
 void DBusMenuImporter::slotLayoutUpdated(uint revision, int parentId)
 {
+    Q_UNUSED(revision);
     if (d->m_idsRefreshedByAboutToShow.remove(parentId)) {
         return;
     }
