@@ -81,7 +81,7 @@ endif (__DBUSMENU_HAVE_CXX11)
 
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
-set(CMAKECONFIG_INSTALL_DIR "${LIB_INSTALL_DIR}/cmake/dbusmenu-${QT_SUFFIX}")
+set(CMAKECONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/dbusmenu-${QT_SUFFIX}")
 set(INCLUDE_INSTALL_DIR "include/dbusmenu-${QT_SUFFIX}")
 
 # dist targets
@@ -107,7 +107,7 @@ add_dependencies(distcheck dist)
 configure_file(dbusmenu-qt.pc.in ${CMAKE_BINARY_DIR}/dbusmenu-${QT_SUFFIX}.pc @ONLY)
 
 install(FILES ${CMAKE_BINARY_DIR}/dbusmenu-${QT_SUFFIX}.pc
-        DESTINATION ${LIB_INSTALL_DIR}/pkgconfig
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
     )
 
 add_subdirectory(src)
