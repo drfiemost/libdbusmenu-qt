@@ -49,9 +49,7 @@ set(dbusmenuexportertest_SRCS
     testutils.cpp
     )
 
-if (NOT USE_QT5)
-    qt4_automoc(${dbusmenuexportertest_SRCS})
-endif()
+qt4_automoc(${dbusmenuexportertest_SRCS})
 
 add_test_executable(dbusmenuexportertest ${dbusmenuexportertest_SRCS})
 
