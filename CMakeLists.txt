@@ -36,12 +36,6 @@ set(dbusmenu_qt_lib_VERSION ${dbusmenu_qt_lib_SOVERSION}.${dbusmenu_qt_lib_API_V
 
 # Detect for which Qt version we're building
 find_package(Qt4 REQUIRED)
-include_directories(
-    ${QT_INCLUDE_DIR}
-    ${QT_QTCORE_INCLUDE_DIR}
-    ${QT_QTDBUS_INCLUDE_DIR}
-    ${QT_QTGUI_INCLUDE_DIR}
-    )
 
 set(QT_SUFFIX "qt")
 

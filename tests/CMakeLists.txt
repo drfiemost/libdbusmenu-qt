@@ -3,17 +3,17 @@ set(CMAKE_AUTOMOC ON)
 add_executable(slowmenu slowmenu.cpp)
 
 target_link_libraries(slowmenu
-    ${QT_QTGUI_LIBRARIES}
-    ${QT_QTDBUS_LIBRARIES}
-    ${QT_QTCORE_LIBRARIES}
+    Qt4::QtGui
+    Qt4::QtDBus
+    Qt4::QtCore
     dbusmenu-qt
 )
 
 set(test_LIBRARIES
-    ${QT_QTGUI_LIBRARY}
-    ${QT_QTCORE_LIBRARY}
-    ${QT_QTDBUS_LIBRARY}
-    ${QT_QTTEST_LIBRARY}
+    Qt4::QtGui
+    Qt4::QtCore
+    Qt4::QtDBus
+    Qt4::QtTest
     dbusmenu-qt
 )
 
@@ -21,8 +21,6 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../src
     ${CMAKE_CURRENT_BINARY_DIR}/../src
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${QT_QTTEST_INCLUDE_DIR}
-    ${QT_QTDBUS_INCLUDE_DIR}
     )
 
 # Macros to create "check" target

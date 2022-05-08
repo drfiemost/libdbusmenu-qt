@@ -24,9 +24,6 @@ endif (__DBUSMENU_HAVE_W_ALL)
 # Check whether QIcon::name() exists. It was added in late Qt 4.7 cycle, and is
 # not present in betas.
 
-set(CMAKE_REQUIRED_INCLUDES "${QT_INCLUDE_DIR}")
-set(CMAKE_REQUIRED_LIBRARIES "${QT_QTGUI_LIBRARIES};${QT_QTCORE_LIBRARIES}")
-
 check_cxx_source_compiles("
 #include <QtGui/QIcon>
 int main() {
@@ -74,9 +71,9 @@ set_target_properties(dbusmenu-${QT_SUFFIX} PROPERTIES
 
 
 target_link_libraries(dbusmenu-${QT_SUFFIX}
-    ${QT_QTGUI_LIBRARIES}
-    ${QT_QTDBUS_LIBRARIES}
-    ${QT_QTCORE_LIBRARIES}
+    Qt4::QtGui
+    Qt4::QtDBus
+    Qt4::QtCore
     )
 
 # Make sure linking to the target adds dbusmenu-qt install directory
