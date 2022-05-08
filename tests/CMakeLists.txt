@@ -1,4 +1,4 @@
-qt4_automoc(slowmenu.cpp)
+set(CMAKE_AUTOMOC ON)
 
 add_executable(slowmenu slowmenu.cpp)
 

@@ -18,7 +18,7 @@
    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
    Boston, MA 02110-1301, USA.
 */
-#include <slowmenu.moc>
+#include "slowmenu.h"
 
 #include <dbusmenuexporter.h>
 
@@ -56,3 +56,5 @@ int main(int argc, char** argv)
     qDebug() << "Looping";
     return app.exec();
 }
+
+#include "moc_slowmenu.cpp"
