@@ -24,6 +24,7 @@ endif (__DBUSMENU_HAVE_W_ALL)
 # Check whether QIcon::name() exists. It was added in late Qt 4.7 cycle, and is
 # not present in betas.
 
+set(CMAKE_REQUIRED_LIBRARIES Qt4::QtGui Qt4::QtCore)
 check_cxx_source_compiles("
 #include <QtGui/QIcon>
 int main() {
@@ -53,6 +54,7 @@ include_directories(
     )
 
 set(CMAKE_AUTOMOC ON)
+set_property(SOURCE dbusmenuadaptor.h PROPERTY SKIP_AUTOMOC ON)
 
 qt4_add_dbus_adaptor(dbusmenu_qt_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/com.canonical.dbusmenu.xml

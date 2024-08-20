@@ -47,8 +47,6 @@ set(dbusmenuexportertest_SRCS
     testutils.cpp
     )
 
-qt4_automoc(${dbusmenuexportertest_SRCS})
-
 add_test_executable(dbusmenuexportertest ${dbusmenuexportertest_SRCS})
 
 target_link_libraries(dbusmenuexportertest
@@ -62,8 +60,6 @@ set(dbusmenuimportertest_SRCS
     testutils.cpp
     )
 
-qt4_automoc(${dbusmenuimportertest_SRCS})
-
 add_test_executable(dbusmenuimportertest ${dbusmenuimportertest_SRCS})
 
 target_link_libraries(dbusmenuimportertest
@@ -75,8 +71,6 @@ target_link_libraries(dbusmenuimportertest
 set(dbusmenushortcuttest_SRCS
     dbusmenushortcuttest.cpp
     )
-
-qt4_automoc(${dbusmenushortcuttest_SRCS})
 
 add_test_executable(dbusmenushortcuttest ${dbusmenushortcuttest_SRCS})
 
